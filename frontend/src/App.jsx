@@ -1,36 +1,40 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/common/Navbar';
+import Footer from './components/common/Footer';
+
 import Home from './pages/Home';
-import Contact from './pages/Contact';
-import Terms from './pages/Terms';
-import HelpCenter from './pages/HelpCenter';
-import BiddingPage from './pages/BiddingPage';
-import Cart from './pages/Cart';
-import Lottery from './pages/Lottery';
-import Donation from './pages/Donation';
-import Subscription from './pages/Subscription';
-import Footer from './components/layout/Footer';
-import Header from './components/layout/Header';
+import DealsPage from './pages/DealsPage';
+import LotteryPage from './features/lottery/lottery';
+import BiddingPage from './features/bidding/BiddingPage';
+import CoinsPage from './features/coins/coins';
+import SubscriptionPage from './features/subscription/Subscription';
+import ShoppingCart from './components/user/ShoppingCart';
+import Wishlist from './components/user/Wishlist';
+import LoginForm from './components/user/LoginForm';
+import UserProfile from './components/user/UserProfile';
 
 const App = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Header />
-      <main className="flex-1 mt-16">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/bidding" element={<BiddingPage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/lottery" element={<Lottery />} />
-          <Route path="/donation" element={<Donation />} />
-          <Route path="/subscription" element={<Subscription />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/help" element={<HelpCenter />} />
-          <Route path="/terms" element={<Terms />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/bidding" element={<BiddingPage />} />
+            <Route path="/deals" element={<DealsPage />} />
+            <Route path="/lottery" element={<LotteryPage />} />
+            <Route path="/coins" element={<CoinsPage />} />
+            <Route path="/subscription" element={<SubscriptionPage />} />
+            <Route path="/cart" element={<ShoppingCart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/profile" element={<UserProfile />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
