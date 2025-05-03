@@ -1,34 +1,29 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo/janata-logo.png';
 import cartIcon from '../../assets/icons/shopping-cart.svg';
-import { FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
+import logo from '../../assets/logo/janata-logo.png';
 
 const Navbar = () => {
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <img src={logo} alt="Janata Bazaar Logo" className="h-10 w-auto" />
-          <h1 className="text-2xl font-bold text-orange-600">Janata Bazaar</h1>
-        </div>
-        <div className="flex items-center space-x-6">
-          <Link to="/cart">
+    <header className="bg-white shadow-md sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="Janata Bazaar" className="h-10 w-auto mr-2" />
+          <span className="text-2xl font-bold text-orange-600">Janata Bazaar</span>
+        </Link>
+        <nav className="flex items-center space-x-6">
+          <Link to="/bidding" className="text-gray-700 hover:text-orange-500 font-medium">Bidding</Link>
+          <Link to="/deals" className="text-gray-700 hover:text-orange-500 font-medium">Deals</Link>
+          <Link to="/lottery" className="text-gray-700 hover:text-orange-500 font-medium">Lottery</Link>
+          <Link to="/coins" className="text-gray-700 hover:text-orange-500 font-medium">Coins</Link>
+          <Link to="/subscription" className="text-gray-700 hover:text-orange-500 font-medium">Subscription</Link>
+          <Link to="/wishlist" className="text-gray-700 hover:text-orange-500 font-medium">Wishlist</Link>
+          <Link to="/profile" className="text-gray-700 hover:text-orange-500 font-medium">My Profile</Link>
+          <Link to="/cart" className="relative">
             <img src={cartIcon} alt="Cart" className="h-6 w-6" />
           </Link>
-          <div className="flex space-x-3 text-gray-500">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <FaInstagram className="hover:text-pink-500" />
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <FaFacebook className="hover:text-blue-600" />
-            </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer">
-              <FaTwitter className="hover:text-blue-400" />
-            </a>
-          </div>
-        </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 };
 
