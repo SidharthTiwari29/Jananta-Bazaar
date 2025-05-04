@@ -19,12 +19,22 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  // Login function to set user
+  const login = (userData) => {
+    setUser(userData);
+  };
+
+  // Logout function to clear user
+  const logout = () => {
+    setUser(null);
+  };
+
   useEffect(() => {
     fetchUser();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, loading }}>
+    <UserContext.Provider value={{ user, setUser, loading, login, logout }}>
       {children}
     </UserContext.Provider>
   );
