@@ -1,6 +1,6 @@
 // src/components/home/DealsOfTheDay.jsx
 import React, { useEffect, useState } from 'react';
-import ProductCard from '../common/ProductCard';
+import DealCard from '../common/DealCard';
 
 const mockDeals = [
   {
@@ -45,12 +45,11 @@ const DealsOfTheDay = () => {
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Deals of the Day</h2>
       <div className="grid gap-6 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
         {deals.map((deal) => (
-          <ProductCard key={deal.id} product={deal} showTimer />
+          <DealCard key={deal.id} product={deal} />
         ))}
       </div>
     </section>
   );
 };
 
-export default DealsOfTheDay;
-
+expo
