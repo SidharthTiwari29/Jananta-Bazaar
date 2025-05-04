@@ -1,6 +1,7 @@
 // src/components/home/HeroSection.jsx
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import familyShoppingImage from "@/assets/images/family-shopping.jpg"; // Import the image
 
 const HeroSection = () => {
   return (
@@ -12,7 +13,7 @@ const HeroSection = () => {
         transition={{ duration: 5, ease: "easeOut" }}
       >
         <img
-          src="/images/family-shopping.jpg"
+          src={familyShoppingImage}
           alt="Family Shopping"
           className="w-full h-full object-cover"
         />
@@ -29,4 +30,21 @@ const HeroSection = () => {
         </motion.h1>
 
         <motion.div
-          class
+          className="mt-8 flex flex-wrap gap-4 justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <Button className="bg-green-700 text-white hover:bg-green-800 text-lg px-6 py-3 rounded-full">
+            Start Bidding
+          </Button>
+          <Button className="bg-white text-green-800 border border-green-700 hover:bg-green-100 text-lg px-6 py-3 rounded-full">
+            See Deals
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;
