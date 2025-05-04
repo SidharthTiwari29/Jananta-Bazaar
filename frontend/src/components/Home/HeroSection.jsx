@@ -26,25 +26,4 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Set Your Price. <br /> Build Your Dreams.
-        </motion.h1>
-
-        <motion.div
-          className="mt-8 flex flex-wrap gap-4 justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
-          <Button className="bg-green-700 text-white hover:bg-green-800 text-lg px-6 py-3 rounded-full">
-            Start Bidding
-          </Button>
-          <Button className="bg-white text-green-800 border border-green-700 hover:bg-green-100 text-lg px-6 py-3 rounded-full">
-            See Deals
-          </Button>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-
-export default HeroSection;
+          Set Your Price. <br
