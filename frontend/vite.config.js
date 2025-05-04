@@ -1,7 +1,10 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: true, // Add this line
+    host: true,
     port: 3000,
     proxy: {
       '/api': {
@@ -10,5 +13,6 @@ export default defineConfig({
         secure: false,
       },
     },
+    allowedHosts: ['.replit.dev'], // Allow all Replit-hosted URLs
   },
 });
