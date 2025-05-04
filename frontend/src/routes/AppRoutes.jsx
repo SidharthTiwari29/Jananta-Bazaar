@@ -27,14 +27,10 @@ function AppRoutes() {
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/terms" element={<TermsAndConditions />} />
       <Route path="/help" element={<HelpCenter />} />
-
-      {/* Redirect to profile if already logged in */}
       <Route
         path="/login"
         element={!user ? <Login /> : <Navigate to="/profile" replace />}
       />
-
-      {/* Protected routes */}
       <Route
         path="/profile"
         element={user ? <UserProfile /> : <Navigate to="/login" replace />}
@@ -43,7 +39,6 @@ function AppRoutes() {
         path="/subscription"
         element={user ? <SubscriptionPage /> : <Navigate to="/login" replace />}
       />
-
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
