@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from '../../utils/api'; // Axios instance to communicate with the backend
+import axios from '../../api/axios'; // Corrected import path for axios instance
 import { AuthContext } from '../../context/AuthContext'; // Authentication context to manage user data
 
 const SubscriptionBadge = () => {
