@@ -1,4 +1,3 @@
-// frontend/src/context/UserContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import { getCurrentUser } from '../api/authApi';
 
@@ -13,7 +12,7 @@ export const UserProvider = ({ children }) => {
       const data = await getCurrentUser();
       setUser(data.user);
     } catch (error) {
-      console.error('Not logged in or failed to fetch profile');
+      console.error('Failed to fetch user profile:', error.message);
       setUser(null);
     } finally {
       setLoading(false);
