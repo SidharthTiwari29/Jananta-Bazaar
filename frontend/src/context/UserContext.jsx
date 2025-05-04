@@ -1,7 +1,11 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import { getCurrentUser } from '../api/authApi';
 
 export const UserContext = createContext();
+
+export const useUser = () => {
+  return useContext(UserContext); // Custom hook to access user context
+};
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -19,12 +23,10 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  // Login function to set user
   const login = (userData) => {
     setUser(userData);
   };
 
-  // Logout function to clear user
   const logout = () => {
     setUser(null);
   };
