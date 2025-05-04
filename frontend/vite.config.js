@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+const { defineConfig } = require('vite');
+const react = require('@vitejs/plugin-react');
 
-export default defineConfig({
+module.exports = defineConfig({
   plugins: [react()],
   server: {
     host: true,
@@ -13,6 +13,6 @@ export default defineConfig({
         secure: false,
       },
     },
-    allowedHosts: ['.replit.dev'], // Allow all Replit-hosted URLs
+    allowedHosts: ['.replit.dev'],
   },
 });
