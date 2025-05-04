@@ -57,3 +57,5 @@ const Subscription = () => {
     </div>
   );
 };
+
+export default Subscription;  // Add this line to fix the export issue
