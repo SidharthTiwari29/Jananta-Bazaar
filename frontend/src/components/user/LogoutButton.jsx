@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';  // Updated for React Router v6+
-import axios from '../../api/axios';  // Corrected path
-import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';  // React Router v6+
+import axios from '../../api/axios';  // Corrected path for axios instance
+import { UserContext } from '../../context/UserContext'; // Use UserContext instead of AuthContext
 
 const LogoutButton = () => {
-  const { setUser } = useContext(AuthContext);
+  const { setUser } = useContext(UserContext);  // Use UserContext to manage user data
   const navigate = useNavigate();  // useNavigate replaces useHistory in React Router v6+
 
   const handleLogout = async () => {
     try {
       await axios.post('/api/auth/logout', {}, { withCredentials: true });
-      setUser(null);
-      navigate('/login');  // Redirect after logout
+      setUser(null);  // Clear the user data from context
+      navigate('/login');  // Redirect to login page after logout
     } catch (error) {
       console.error('Error logging out:', error);
     }
