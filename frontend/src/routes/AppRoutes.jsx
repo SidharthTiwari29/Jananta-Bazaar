@@ -11,22 +11,12 @@ import Wishlist from "../pages/Wishlist";
 import HelpCenter from "../pages/HelpCenter";
 import Login from "../pages/Login";
 import UserProfile from "../pages/UserProfile";
-import SubscriptionPage from "../pages/Subscription"; // New subscription page
+import SubscriptionPage from "../pages/Subscription";
 import { UserContext } from "../context/UserContext";
 
-// ProtectedRoute component to protect sensitive routes
-const ProtectedRoute = ({ element, ...rest }) => {
+function AppRoutes() {
   const { user } = useContext(UserContext);
 
-  return (
-    <Route
-      {...rest}
-      element={user ? element : <Navigate to="/login" />}
-    />
-  );
-};
-
-function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -37,13 +27,23 @@ function AppRoutes() {
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/terms" element={<TermsAndConditions />} />
       <Route path="/help" element={<HelpCenter />} />
-      <Route path="/login" element={<Login />} />
-      
-      {/* Protected Routes */}
-      <ProtectedRoute path="/profile" element={<UserProfile />} />
-      <ProtectedRoute path="/subscription" element={<SubscriptionPage />} />
-      
-      {/* Catch-all route for NotFound */}
+
+      {/* Redirect to profile if already logged in */}
+      <Route
+        path="/login"
+        element={!user ? <Login /> : <Navigate to="/profile" replace />}
+      />
+
+      {/* Protected routes */}
+      <Route
+        path="/profile"
+        element={user ? <UserProfile /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/subscription"
+        element={user ? <SubscriptionPage /> : <Navigate to="/login" replace />}
+      />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
