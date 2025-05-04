@@ -1,38 +1,33 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
-import ScrollToTop from './components/common/ScrollToTop';
-
 import Home from './pages/Home';
-import BiddingPage from './features/bidding/BiddingPage';
-import Lottery from './features/lottery/Lottery';
-import Subscription from './features/subscription/Subscription';
-import Wallet from './features/wallet/Wallet';
-import DonationPayments from './components/payments/DonationPayments';
+import LoginForm from './components/user/LoginForm';
+import SignupForm from './components/user/SignupForm';
 import UserProfile from './components/user/UserProfile';
-import ShoppingCart from './components/user/ShoppingCart';
+import { UserProvider } from './context/UserContext';
 
-function App() {
+const App = () => {
   return (
-    <Router>
-      <ScrollToTop />
-      <Navbar />
-      <div className="min-h-screen bg-gray-50">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/bidding" element={<BiddingPage />} />
-          <Route path="/lottery" element={<Lottery />} />
-          <Route path="/subscription" element={<Subscription />} />
-          <Route path="/wallet" element={<Wallet />} />
-          <Route path="/donate" element={<DonationPayments />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/cart" element={<ShoppingCart />} />
-        </Routes>
-      </div>
-      <Footer />
-    </Router>
+    <UserProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/signup" element={<SignupForm />} />
+              <Route path="/profile" element={<UserProfile />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </UserProvider>
   );
-}
+};
 
 export default App;
