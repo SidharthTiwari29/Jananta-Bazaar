@@ -2,7 +2,7 @@
 import React from 'react';
 import { useUser } from '../../context/UserContext';
 import SubscriptionBadge from '../subscription/SubscriptionBadge';
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from './LogoutButton';  // Corrected import path
 
 const UserProfile = () => {
   const { user, isLoading } = useUser();
