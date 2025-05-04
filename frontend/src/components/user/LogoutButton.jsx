@@ -1,27 +1,27 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';  // For page redirection
-import axios from '../../utils/api';  // Axios instance to communicate with the backend
-import { AuthContext } from '../../context/AuthContext';  // Authentication context
+import { useNavigate } from 'react-router-dom';  // Updated for React Router v6+
+import axios from '../../api/axios';  // Corrected path
+import { AuthContext } from '../../context/AuthContext';
 
 const LogoutButton = () => {
-  const { setUser } = useContext(AuthContext);  // Access the AuthContext to update user state
-  const history = useHistory();  // React Router's history hook for redirection
+  const { setUser } = useContext(AuthContext);
+  const navigate = useNavigate();  // useNavigate replaces useHistory in React Router v6+
 
   const handleLogout = async () => {
     try {
-      // Call the backend to log out (clear the JWT token from the server-side, if necessary)
       await axios.post('/api/auth/logout', {}, { withCredentials: true });
-
-      // Clear the user state in context and redirect to login page or home
-      setUser(null);  // Clear user data in context
-      history.push('/login');  // Redirect to login page (or home page)
+      setUser(null);
+      navigate('/login');  // Redirect after logout
     } catch (error) {
       console.error('Error logging out:', error);
     }
   };
 
   return (
-    <button className="logout-button" onClick={handleLogout}>
+    <button
+      onClick={handleLogout}
+      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+    >
       Logout
     </button>
   );
