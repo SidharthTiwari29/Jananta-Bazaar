@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
-import heartIcon from '../../assets/icons/made-in-india.png';
+import heartIcon from '../../assets/images/made-in-india.png'; // Corrected path to the image
 
 const Footer = () => {
   return (
