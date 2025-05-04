@@ -1,15 +1,12 @@
-
+// tailwind.config.js
 module.exports = {
-  content: [
-    './src/**/*.{html,js,jsx,ts,tsx}', // Ensure that TailwindCSS can find all your component files
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      colors: {
-        primary: '#ff6f00',   // Orange
-        secondary: '#009933', // Green
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
       },
     },
   },
   plugins: [],
-}
+};
