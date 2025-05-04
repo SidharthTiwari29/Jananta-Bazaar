@@ -1,12 +1,13 @@
+// src/pages/Subscription.jsx
 import React, { useEffect, useState } from 'react';
-import axios from '../utils/axiosInstance';
+import axiosInstance from '../api/axios'; // Updated import path
 
 const Subscription = () => {
   const [subscription, setSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/user/subscription')
+    axiosInstance.get('/user/subscription')
       .then(res => setSubscription(res.data))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -14,7 +15,7 @@ const Subscription = () => {
 
   const handleSubscribe = async () => {
     try {
-      const res = await axios.post('/api/payment/subscribe');
+      const res = await axiosInstance.post('/payment/subscribe');
       window.location.href = res.data.paymentUrl; // Redirect to payment gateway
     } catch (err) {
       alert('Subscription failed. Try again.');
@@ -56,5 +57,3 @@ const Subscription = () => {
     </div>
   );
 };
-
-export default Subscription;
