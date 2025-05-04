@@ -1,9 +1,14 @@
+// src/components/user/LoginForm.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { login } = useUser();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,15 +20,41 @@ const LoginForm = ({ onLogin }) => {
     }
 
     try {
-      // Mock backend call – replace with actual API
-      if (email === 'user@example.com' && password === 'password') {
-        onLogin({ name: 'Demo User', email });
+      // Replace this with actual API call to backend
+      const response = await fakeLoginApi(email, password);
+
+      if (response.success) {
+        login(response.user, response.token);
+        navigate('/profile'); // Redirect to profile/dashboard
       } else {
-        setError('Invalid credentials. Try again!');
+        setError('Invalid credentials. Please try again.');
       }
     } catch (err) {
-      setError('Login failed. Please try again later.');
+      console.error(err);
+      setError('Something went wrong. Try again later.');
     }
+  };
+
+  // Simulated API response for demonstration
+  const fakeLoginApi = async (email, password) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (email === 'user@example.com' && password === 'password') {
+          resolve({
+            success: true,
+            user: {
+              name: 'Demo User',
+              email,
+              isSubscribed: true,
+              coins: 250,
+            },
+            token: 'demo-jwt-token',
+          });
+        } else {
+          resolve({ success: false });
+        }
+      }, 1000);
+    });
   };
 
   return (
@@ -73,4 +104,3 @@ const LoginForm = ({ onLogin }) => {
 };
 
 export default LoginForm;
-
