@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { getSubscriptionStatus } from '../../api/subscriptionapi'; // Import the correct API function
+import { getSubscriptionStatus } from '../../api/subscriptionApi'; // Import the correct API function
 import { UserContext } from '../../context/UserContext'; // Import the correct UserContext
 
 const SubscriptionBadge = () => {
