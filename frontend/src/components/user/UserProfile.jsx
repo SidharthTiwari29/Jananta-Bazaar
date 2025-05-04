@@ -1,8 +1,8 @@
 // src/components/user/UserProfile.jsx
 import React from 'react';
 import { useUser } from '../../context/UserContext';
-import SubscriptionBadge from '../subscription/SubscriptionBadge';
-import LogoutButton from './LogoutButton';  // Corrected import path
+import SubscriptionBadge from './SubscriptionBadge';  // Correct path
+import LogoutButton from './LogoutButton';            // Correct path
 
 const UserProfile = () => {
   const { user, isLoading } = useUser();
