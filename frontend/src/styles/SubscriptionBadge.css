@@ -1,0 +1,58 @@
+/* Subscription Badge Styles */
+.subscription-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 20px;
+  margin: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.subscription-badge.active {
+  background-color: #28a745; /* Green for active subscription */
+  color: white;
+}
+
+.subscription-badge.expired {
+  background-color: #dc3545; /* Red for expired subscription */
+  color: white;
+}
+
+.subscription-badge.upgrading {
+  background-color: #ffc107; /* Yellow for upgrading */
+  color: white;
+}
+
+.subscription-badge:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+/* Tooltip (optional, for additional details when hovering) */
+.subscription-badge.active:hover::after {
+  content: 'Your subscription is active! Enjoy exclusive benefits.';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.subscription-badge.expired:hover::after {
+  content: 'Your subscription has expired. Please renew.';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
