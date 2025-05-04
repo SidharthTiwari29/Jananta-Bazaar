@@ -1,38 +1,46 @@
+// src/components/user/UserProfile.jsx
 import React from 'react';
-import { BadgeCheck } from 'lucide-react';
+import { useUser } from '../../context/UserContext';
+import SubscriptionBadge from '../subscription/SubscriptionBadge';
+import LogoutButton from '../auth/LogoutButton';
 
-const UserProfile = ({ user }) => {
-  const { name, email, isSubscribed, coins, totalSpend } = user;
+const UserProfile = () => {
+  const { user, isLoading } = useUser();
+
+  if (isLoading) {
+    return <div className="text-center py-10 text-orange-600">Loading profile...</div>;
+  }
+
+  if (!user) {
+    return (
+      <div className="text-center py-10 text-gray-600">
+        Please <a href="/login" className="text-orange-600 font-semibold">log in</a> to view your profile.
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <div className="bg-white shadow-xl rounded-2xl p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold text-gray-800">User Profile</h2>
-          {isSubscribed && (
-            <div className="flex items-center text-green-600 font-semibold">
-              <BadgeCheck className="mr-1 w-5 h-5" /> Subscribed User
-            </div>
-          )}
-        </div>
-        <div className="space-y-2 text-gray-700">
-          <p><span className="font-semibold">Name:</span> {name}</p>
-          <p><span className="font-semibold">Email:</span> {email}</p>
-          <p><span className="font-semibold">Coins Collected:</span> {coins}</p>
-          <p><span className="font-semibold">Total Spend:</span> ₹{totalSpend}</p>
-        </div>
+    <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md mt-6">
+      <h2 className="text-2xl font-bold mb-4 text-orange-600">User Profile</h2>
 
-        {isSubscribed && (
-          <div className="mt-6 bg-green-50 border border-green-300 p-4 rounded-xl">
-            <h3 className="text-lg font-semibold text-green-700 mb-2">Subscriber Benefits:</h3>
-            <ul className="list-disc pl-6 text-sm text-green-800">
-              <li>Early access to Happy Hour bidding</li>
-              <li>Exclusive access to higher lottery slots</li>
-              <li>Priority in coin redemption deals</li>
-              <li>Dedicated customer support line</li>
-            </ul>
+      <div className="space-y-3 text-sm text-gray-700">
+        <div><strong>Name:</strong> {user.name}</div>
+        <div><strong>Email:</strong> {user.email}</div>
+        {user.phone && <div><strong>Phone:</strong> {user.phone}</div>}
+        <div><strong>Status:</strong> {user.isSubscribed ? 'Subscribed User' : 'Free User'}</div>
+      </div>
+
+      {user.isSubscribed && (
+        <div className="mt-4">
+          <SubscriptionBadge />
+          <div className="mt-2 text-green-700 text-sm">
+            You enjoy early lottery entry, bonus coins, and exclusive deals.
           </div>
-        )}
+        </div>
+      )}
+
+      <div className="mt-6">
+        <LogoutButton />
       </div>
     </div>
   );
