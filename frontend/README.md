@@ -1,4 +1,4 @@
-# Janata Bazaar – Frontend
+# Jananta Bazaar – Frontend
 
 **Premium Grocery & Essentials Platform with Bidding, Lottery, and Subscription Support**
 
