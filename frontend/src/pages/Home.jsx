@@ -1,6 +1,6 @@
 // src/pages/Home.jsx
 import { motion } from "framer-motion";
-import HeroSection from "../components/home/HeroSection";
+import HeroSection from "../components/Home/HeroSection";
 import OfferOverview from "../components/home/OfferOverview";
 import DealsSection from "../components/home/DealsSection";
 import WinnersSection from "../components/home/WinnersSection";
