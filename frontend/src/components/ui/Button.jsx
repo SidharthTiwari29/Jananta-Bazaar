@@ -1,5 +1,4 @@
 import React from 'react';
-import { cn } from '@/lib/utils'; // Optional: You can replace with simple `className` join if not using cn()
 
 export const Button = ({
   children,
@@ -27,7 +26,7 @@ export const Button = ({
 
   return (
     <button
-      className={cn(base, variants[variant], sizes[size], className)}
+      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
       disabled={isLoading || disabled}
       {...props}
     >
@@ -35,4 +34,3 @@ export const Button = ({
     </button>
   );
 };
-
