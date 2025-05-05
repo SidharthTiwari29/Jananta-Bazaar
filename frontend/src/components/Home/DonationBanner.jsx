@@ -1,7 +1,6 @@
-// src/components/home/DonationBanner.jsx
 import React from 'react';
 import { HeartHandshake } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 
 const DonationBanner = () => {
   return (
@@ -10,11 +9,15 @@ const DonationBanner = () => {
         <div className="flex items-center gap-4">
           <HeartHandshake className="text-yellow-600 w-10 h-10" />
           <div>
-            <h3 className="text-lg md:text-xl font-semibold text-yellow-800">Support the Needy & Elderly</h3>
-            <p className="text-sm text-yellow-700">Your small act of kindness can make a big impact.</p>
+            <h3 className="text-lg md:text-xl font-semibold text-yellow-800">
+              Support the Needy & Elderly
+            </h3>
+            <p className="text-sm text-yellow-700">
+              Your small act of kindness can make a big impact.
+            </p>
           </div>
         </div>
-        <Button className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-full text-sm">
+        <Button variant="primary" size="md">
           Donate Now
         </Button>
       </div>
@@ -23,4 +26,3 @@ const DonationBanner = () => {
 };
 
 export default DonationBanner;
-
