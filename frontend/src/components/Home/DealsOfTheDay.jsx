@@ -36,14 +36,15 @@ const DealsOfTheDay = () => {
   const [deals, setDeals] = useState([]);
 
   useEffect(() => {
-    // Simulate fetch
     setTimeout(() => setDeals(mockDeals), 500);
   }, []);
 
   return (
-    <section className="bg-orange-50 py-8 px-4 md:px-12">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Deals of the Day</h2>
-      <div className="grid gap-6 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+    <section className="bg-gradient-to-br from-orange-50 to-white py-12 px-4 md:px-12 rounded-xl shadow-inner">
+      <h2 className="text-3xl font-extrabold text-gray-800 text-center mb-10 tracking-tight">
+        Deals of the Day
+      </h2>
+      <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
         {deals.map((deal) => (
           <DealCard key={deal.id} product={deal} />
         ))}
