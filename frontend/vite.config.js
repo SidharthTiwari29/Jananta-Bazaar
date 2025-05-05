@@ -9,4 +9,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  build: {
+    outDir: 'dist',
+  },
+  server: {
+    fs: {
+      allow: ['..'],
+    },
+  },
+  // Add this part:
+  base: './',
 });
