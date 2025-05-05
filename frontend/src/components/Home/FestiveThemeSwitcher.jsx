@@ -1,7 +1,7 @@
 // src/components/home/FestiveThemeSwitcher.jsx
 import React, { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/utils'; // <-- corrected import
 
 const themes = ['normal', 'diwali', 'eid', 'pongal'];
 
@@ -35,4 +35,3 @@ const FestiveThemeSwitcher = ({ onThemeChange }) => {
 };
 
 export default FestiveThemeSwitcher;
-
