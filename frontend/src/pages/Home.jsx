@@ -1,10 +1,10 @@
 // src/pages/Home.jsx
 import { motion } from "framer-motion";
 import HeroSection from "../components/Home/HeroSection";
-import OfferOverview from "../components/home/OfferOverview";
-import DealsSection from "../components/home/DealsSection";
-import WinnersSection from "../components/home/WinnersSection";
-import LiveBargains from "../components/home/LiveBargains";
+import OfferOverview from "../components/Home/OfferOverview";
+import DealsSection from "../components/Home/DealsSection";
+import WinnersSection from "../components/Home/WinnersSection";
+import LiveBargains from "../components/Home/LiveBargains";
 
 const Home = () => {
   return (
