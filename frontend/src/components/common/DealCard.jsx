@@ -2,6 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
+// Time formatting utility for HH:MM:SS
+const formatTime = (seconds) => {
+  const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+  const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+  const s = (seconds % 60).toString().padStart(2, '0');
+  return `${h}:${m}:${s}`;
+};
+
 const DealCard = ({ product }) => {
   const [timeLeft, setTimeLeft] = useState(product.timeLeft || 0);
 
@@ -12,14 +20,7 @@ const DealCard = ({ product }) => {
     return () => clearInterval(timer);
   }, []);
 
-  const formatTime = (seconds) => {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = seconds % 60;
-    return `${h}h ${m}m ${s}s`;
-  };
-
-  if (timeLeft === 0) return null; // hide expired deal completely
+  if (timeLeft === 0) return null; // hide expired deal
 
   return (
     <motion.div
