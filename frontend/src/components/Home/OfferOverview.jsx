@@ -1,10 +1,10 @@
 // src/components/home/OfferOverview.jsx
 import { motion } from "framer-motion";
-import { Lightbulb, HandCoins, Gift, ShieldCheck } from "lucide-react";
+import { Lightbulb, Coins, Gift, ShieldCheck } from "lucide-react";
 
 const offers = [
   {
-    icon: <HandCoins className="w-8 h-8 text-green-700" />,
+    icon: <Coins className="w-8 h-8 text-green-700" />,
     title: "Bid Your Price",
     description: "You decide what to pay — the lowest unique bid wins!",
   },
