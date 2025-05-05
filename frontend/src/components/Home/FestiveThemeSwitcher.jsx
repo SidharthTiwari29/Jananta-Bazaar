@@ -1,42 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import { Sparkles } from 'lucide-react';
+// src/components/Home/FestiveThemeSwitcher.jsx
+import React, { useEffect } from 'react';
+import confetti from 'canvas-confetti';
 
-const FESTIVAL_THEMES = [
-  { name: 'diwali', date: '11-12', color: 'bg-yellow-100' },
-  { name: 'eid', date: '04-10', color: 'bg-green-100' },
-  { name: 'pongal', date: '01-15', color: 'bg-orange-100' },
-];
+const getCurrentFestival = () => {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
 
-const getTodayMMDD = () => {
-  const now = new Date();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  return `${month}-${day}`;
+  // Add more festivals as needed
+  if ((month === 11 && day >= 1 && day <= 10)) return 'diwali';
+  if ((month === 4 && day >= 10 && day <= 20)) return 'eid';
+  if ((month === 1 && day >= 13 && day <= 15)) return 'pongal';
+  return 'normal';
+};
+
+const triggerFireworks = () => {
+  const duration = 5 * 1000;
+  const animationEnd = Date.now() + duration;
+  const interval = setInterval(() => {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) return clearInterval(interval);
+
+    confetti({
+      particleCount: 100,
+      startVelocity: 30,
+      spread: 360,
+      origin: {
+        x: Math.random(),
+        y: Math.random() - 0.2,
+      },
+    });
+  }, 400);
 };
 
 const FestiveThemeSwitcher = () => {
-  const [theme, setTheme] = useState('normal');
-
   useEffect(() => {
-    const today = getTodayMMDD();
-    const activeTheme = FESTIVAL_THEMES.find(f => f.date === today);
-    const themeToApply = activeTheme ? activeTheme.name : 'normal';
-    setTheme(themeToApply);
-    document.documentElement.setAttribute('data-theme', themeToApply);
+    const festival = getCurrentFestival();
+    document.documentElement.setAttribute('data-theme', festival);
+
+    if (festival === 'diwali' || festival === 'eid') {
+      triggerFireworks();
+    }
   }, []);
 
-  return (
-    <div className="fixed top-3 right-3 z-50 animate-pulse">
-      {theme !== 'normal' && (
-        <div className="flex items-center gap-2 px-3 py-1 rounded-full shadow-lg bg-white border border-gray-200">
-          <Sparkles className="text-yellow-500" />
-          <span className="text-sm font-semibold text-gray-800">
-            {theme.charAt(0).toUpperCase() + theme.slice(1)} Mode On!
-          </span>
-        </div>
-      )}
-    </div>
-  );
+  return null;
 };
 
 export default FestiveThemeSwitcher;
