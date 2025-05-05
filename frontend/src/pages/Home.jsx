@@ -2,11 +2,10 @@
 import { motion } from "framer-motion";
 import HeroSection from "../components/Home/HeroSection";
 import OfferOverview from "../components/Home/OfferOverview";
-import DealsSection from "../components/Home/DealsSection";
+import DealsOfTheDay from "../components/Home/DealsOfTheDay";
 import LiveBargains from "../components/Home/LiveBargains";
 import Leaderboard from "../components/Home/Leaderboard";
 import BiddingClock from "../components/Home/BiddingClock";
-import DealsOfTheDay from "../components/Home/DealsOfTheDay";
 import DonationBanner from "../components/Home/DonationBanner";
 import FestiveThemeSwitcher from "../components/Home/FestiveThemeSwitcher";
 import FunnyQuotes from "../components/Home/FunnyQuotes";
@@ -43,11 +42,6 @@ const Home = () => {
       {/* Deals of the Day */}
       <section className="max-w-7xl mx-auto px-4 py-10">
         <DealsOfTheDay />
-      </section>
-
-      {/* Trending & Popular Deals */}
-      <section className="max-w-7xl mx-auto px-4 py-10">
-        <DealsSection />
       </section>
 
       {/* Lottery Highlights */}
