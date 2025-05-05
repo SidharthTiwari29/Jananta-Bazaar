@@ -1,35 +1,40 @@
-// src/components/home/FestiveThemeSwitcher.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sparkles } from 'lucide-react';
-import { cn } from '@/utils/utils'; // <-- corrected import
 
-const themes = ['normal', 'diwali', 'eid', 'pongal'];
+const FESTIVAL_THEMES = [
+  { name: 'diwali', date: '11-12', color: 'bg-yellow-100' },
+  { name: 'eid', date: '04-10', color: 'bg-green-100' },
+  { name: 'pongal', date: '01-15', color: 'bg-orange-100' },
+];
 
-const FestiveThemeSwitcher = ({ onThemeChange }) => {
+const getTodayMMDD = () => {
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${month}-${day}`;
+};
+
+const FestiveThemeSwitcher = () => {
   const [theme, setTheme] = useState('normal');
 
   useEffect(() => {
-    onThemeChange && onThemeChange(theme);
-  }, [theme, onThemeChange]);
-
-  const handleSwitch = () => {
-    const currentIndex = themes.indexOf(theme);
-    const nextTheme = themes[(currentIndex + 1) % themes.length];
-    setTheme(nextTheme);
-  };
+    const today = getTodayMMDD();
+    const activeTheme = FESTIVAL_THEMES.find(f => f.date === today);
+    const themeToApply = activeTheme ? activeTheme.name : 'normal';
+    setTheme(themeToApply);
+    document.documentElement.setAttribute('data-theme', themeToApply);
+  }, []);
 
   return (
-    <div className="flex items-center justify-center mt-6">
-      <button
-        onClick={handleSwitch}
-        className={cn(
-          'bg-gradient-to-r from-orange-400 to-green-500 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow-md hover:scale-105 transition-transform duration-200',
-          theme !== 'normal' && 'ring-2 ring-yellow-300'
-        )}
-      >
-        <Sparkles className="w-4 h-4" />
-        {theme === 'normal' ? 'Normal Mode' : `Theme: ${theme.toUpperCase()}`}
-      </button>
+    <div className="fixed top-3 right-3 z-50 animate-pulse">
+      {theme !== 'normal' && (
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full shadow-lg bg-white border border-gray-200">
+          <Sparkles className="text-yellow-500" />
+          <span className="text-sm font-semibold text-gray-800">
+            {theme.charAt(0).toUpperCase() + theme.slice(1)} Mode On!
+          </span>
+        </div>
+      )}
     </div>
   );
 };
