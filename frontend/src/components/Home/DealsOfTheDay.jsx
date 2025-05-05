@@ -52,4 +52,4 @@ const DealsOfTheDay = () => {
   );
 };
 
-expo
+export default DealsOfTheDay;
