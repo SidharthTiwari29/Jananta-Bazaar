@@ -1,14 +1,3 @@
-// src/components/common/DealCard.jsx
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-
-const formatTime = (seconds) => {
-  const hrs = Math.floor(seconds / 3600);
-  const mins = Math.floor((seconds % 3600) / 60);
-  const secs = seconds % 60;
-  return `${hrs}h ${mins}m ${secs}s`;
-};
-
 const DealCard = ({ product }) => {
   const [timeLeft, setTimeLeft] = useState(product.timeLeft || 0);
 
@@ -18,6 +7,8 @@ const DealCard = ({ product }) => {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  if (timeLeft === 0) return null; // hide expired deal completely
 
   return (
     <motion.div
@@ -42,13 +33,9 @@ const DealCard = ({ product }) => {
         Save {product.discount}
       </p>
 
-      {timeLeft > 0 && (
-        <div className="text-xs text-red-600 font-semibold bg-red-50 px-3 py-1 rounded-full text-center mx-auto w-fit">
-          Ends in: {formatTime(timeLeft)}
-        </div>
-      )}
+      <div className="text-xs text-red-600 font-semibold bg-red-50 px-3 py-1 rounded-full text-center mx-auto w-fit">
+        Ends in: {formatTime(timeLeft)}
+      </div>
     </motion.div>
   );
 };
-
-export default DealCard;
