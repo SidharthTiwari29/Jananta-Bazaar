@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css'; // Corrected path to the CSS file
+import './styles/index.css';
 import App from './App';
+import { UserProvider } from './contexts/UserContext'; // adjust if your folder structure differs
 
-// Create a root element to mount your React application
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// Render the App component into the root element
 root.render(
   <React.StrictMode>
-    <App />
+    <UserProvider>
+      <App />
+    </UserProvider>
   </React.StrictMode>
 );
