@@ -1,23 +1,38 @@
-// src/components/home/HeroSection.jsx
+// src/components/Home/HeroSection.jsx
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import heroImage from "../../assets/images/family-shopping-illustration.png";
+import fireworkGlow from "../../assets/images/firework-glow.png";
+
+const isFestival = true; // Set this dynamically in the future
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-orange-100 via-orange-200 to-orange-300 py-16">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-12">
-        {/* Text */}
+    <section className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 py-20">
+      {/* Firework Glow if Festival */}
+      {isFestival && (
+        <motion.img
+          src={fireworkGlow}
+          alt="Festival Glow"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ duration: 2 }}
+          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none mix-blend-lighten"
+        />
+      )}
+
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-12 gap-10">
+        {/* Text Section */}
         <motion.div
-          initial={{ x: -60, opacity: 0 }}
+          initial={{ x: -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.9 }}
-          className="space-y-6 md:w-1/2 text-center md:text-left z-10"
+          className="space-y-6 md:w-1/2 text-center md:text-left"
         >
-          <h1 className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-orange-900 via-amber-700 to-orange-800 bg-clip-text text-transparent font-serif drop-shadow-md">
+          <h1 className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-orange-800 via-red-600 to-yellow-500 bg-clip-text text-transparent font-serif drop-shadow-md">
             Janata Bazaar
           </h1>
-          <p className="text-2xl md:text-3xl font-semibold text-orange-800 font-sans leading-snug">
+          <p className="text-2xl md:text-3xl font-semibold text-orange-800 font-sans leading-snug drop-shadow-sm">
             Set Your Price. <br className="hidden md:block" />
             Build Your Dreams.
           </p>
@@ -34,24 +49,24 @@ const HeroSection = () => {
           </p>
         </motion.div>
 
-        {/* Image */}
+        {/* Image Section */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.1 }}
-          className="mt-12 md:mt-0 md:w-1/2 relative z-0"
+          transition={{ duration: 1 }}
+          className="md:w-1/2 flex justify-center relative"
         >
           <img
             src={heroImage}
-            alt="Family shopping illustration"
-            className="w-full max-w-lg mx-auto drop-shadow-xl"
+            alt="Family Shopping"
+            className="w-full max-w-lg mx-auto drop-shadow-2xl rounded-2xl"
           />
         </motion.div>
       </div>
 
-      {/* Decorative Blur Element */}
-      <div className="absolute -top-10 -left-10 w-72 h-72 bg-orange-300 rounded-full opacity-30 blur-3xl z-0"></div>
-      <div className="absolute -bottom-10 -right-10 w-72 h-72 bg-orange-400 rounded-full opacity-20 blur-2xl z-0"></div>
+      {/* Decorative Gradient Circles */}
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange-300 rounded-full opacity-20 blur-3xl z-0" />
+      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-yellow-300 rounded-full opacity-20 blur-2xl z-0" />
     </section>
   );
 };
