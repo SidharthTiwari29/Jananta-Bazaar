@@ -1,72 +1,58 @@
-// src/components/Home/HeroSection.jsx
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import heroImage from "../../assets/images/family-shopping-illustration.png";
-import fireworkGlow from "../../assets/images/firework-glow.png";
-
-const isFestival = true; // Set this dynamically in the future
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
+  const fireworkGlow = '/firework-glow.png'; // From public folder
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 py-20">
-      {/* Firework Glow if Festival */}
-      {isFestival && (
-        <motion.img
-          src={fireworkGlow}
-          alt="Festival Glow"
+    <section className="relative bg-orange-50 overflow-hidden">
+      {/* Background Firework Glow */}
+      <img
+        src={fireworkGlow}
+        alt="Firework Glow"
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-30 pointer-events-none"
+      />
+
+      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-32 relative z-10 text-center">
+        <motion.h1
+          className="text-4xl lg:text-6xl font-extrabold text-orange-700 leading-tight"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          Welcome to Janata Bazaar
+        </motion.h1>
+
+        <motion.p
+          className="mt-4 text-lg lg:text-2xl text-gray-700"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.6 }}
-          transition={{ duration: 2 }}
-          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none mix-blend-lighten"
-        />
-      )}
-
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 md:px-12 gap-10">
-        {/* Text Section */}
-        <motion.div
-          initial={{ x: -80, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.9 }}
-          className="space-y-6 md:w-1/2 text-center md:text-left"
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <h1 className="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-orange-800 via-red-600 to-yellow-500 bg-clip-text text-transparent font-serif drop-shadow-md">
-            Janata Bazaar
-          </h1>
-          <p className="text-2xl md:text-3xl font-semibold text-orange-800 font-sans leading-snug drop-shadow-sm">
-            Set Your Price. <br className="hidden md:block" />
-            Build Your Dreams.
-          </p>
-          <Link to="/bidding">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="mt-4 px-8 py-3 bg-green-600 hover:bg-green-700 text-white text-lg font-bold rounded-full shadow-lg transition-all duration-300"
-            >
-              Start Bidding
-            </motion.button>
+          Desi deals. Real bidding. Zero bakwaas.  
+        </motion.p>
+
+        <motion.div
+          className="mt-8 flex justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+        >
+          <Link
+            to="/bidding"
+            className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded-full transition duration-300"
+          >
+            Start Bidding
           </Link>
-          <p className="text-sm text-orange-700 italic pt-2">
-            “Why pay full price, when you can pay your price?”
-          </p>
-        </motion.div>
-
-        {/* Image Section */}
-        <motion.div
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="md:w-1/2 flex justify-center relative"
-        >
-          <img
-            src={heroImage}
-            alt="Family Shopping"
-            className="w-full max-w-lg mx-auto drop-shadow-2xl rounded-2xl"
-          />
+          <Link
+            to="/lottery"
+            className="bg-white border border-orange-600 text-orange-600 hover:bg-orange-50 font-semibold px-6 py-3 rounded-full transition duration-300"
+          >
+            View Lottery
+          </Link>
         </motion.div>
       </div>
-
-      {/* Decorative Gradient Circles */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange-300 rounded-full opacity-20 blur-3xl z-0" />
-      <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-yellow-300 rounded-full opacity-20 blur-2xl z-0" />
     </section>
   );
 };
